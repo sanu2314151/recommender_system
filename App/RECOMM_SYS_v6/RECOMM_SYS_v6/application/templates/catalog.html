@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <br/><h1>Movies Catalog</h1><br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table id="movietable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Movie Title</th>
+                        <th>Year</th>
+                        <th>Watch</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for m in moviecat %}
+                    <tr>
+                        <td> {{ m["Name"] }} </td>
+                        <td> {{ m["Year"] }} </td>
+                        <td> <a href="{{ m['Link'] }}" class="text-dark"><i class="fa-solid fa-film"></i></a> </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>    
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset ="UTF-8">
+        <title>Movie Recommender System</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">  
+        <!-- Bootstrap and Font Awesome -->
+        <script src="https://kit.fontawesome.com/3d15067040.js" crossorigin="anonymous"></script>
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+        <!-- Font awesome fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href=" {{ url_for('static',filename='css/custom_style.css') }} "/>
+        <!-- Tables files -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src=" {{ url_for('static',filename='js/table.js') }} "></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">            
+    </head>
+
+    <body>
+        <div class="text-center text-dark">
+            
+            <div class="row"><div class="col-md-12">
+            {% include "includes/nav.html" %}
+            </div></div>
+
+            <div class="row"><div class="col-md-12">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for cat_,m_ in messages %}
+                        <div class="alert alert-{{cat_}}">
+                            <p>{{ m_ }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </div></div>
+
+            <div class="row"><div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <div class="user-info">
+                    {% if session['First_Name'] and session['Last_Name'] %}
+                    <i class="fa fa-user-circle me-2 fa-1x"></i>{{ session['First_Name'] }} {{ session['Last_Name'] }}
+                    {% endif %}
+                    </div>
+                </div></div>
+
+            <div class="row"><div class="col-md-12"></div>
+            {% block content %}
+        
+            {% endblock %}
+            </div></div>
+
+            <div class="row"><div class="col-md-12"></div>
+            {% include "includes/footer.html" %}
+            </div></div>
+        
+        </div>
+    </body>
+</html>

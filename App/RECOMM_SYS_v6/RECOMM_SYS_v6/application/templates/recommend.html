@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <br/><h1>Movies chosen for you</h1><br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table id="movietable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Movie Title</th>
+                        <th>Predicted Rating</th>
+                        <th>Watch</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for p in predictions %}
+                    <tr>
+                        <td></td>
+                        <td> {{ p.Movie_Info["Name"] }} </td>
+                        <td> {{ p["Predicted_Rating"] }} </td>
+                        <td> <a href="{{ p.Movie_Info['Link'] }}" class="text-dark"><i class="fa-solid fa-film"></i></a> </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

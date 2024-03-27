@@ -1,0 +1,40 @@
+<div class="header">
+    <div class="menu-bar">
+
+        <!-- From bootstrap example page -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"> <img src=" {{ url_for('static',filename='images/logo.png') }} "></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars"></i>
+              <!-- <span class="navbar-toggler-icon"></span> -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('index') }}"><span class="{% if navindex %}activate{% endif %}">Home</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('catalog') }}"><span class="{% if navcatalog %}activate{% endif %}">Catalog</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('reviews') }}"><span class="{% if navreviews %}activate{% endif %}">Reviews</span></a>
+                </li>                
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('recommend') }}"><span class="{% if navrecommend %}activate{% endif %}">Recommend</span></a>
+                </li>
+                {% if not session['Cust_Id'] %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('login') }}"><span class="{% if navlogin %}activate{% endif %}">Login</span></a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('logout') }}"><span>Logout</span></a>
+                </li>                
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+
+
+    </div>
+</div>
