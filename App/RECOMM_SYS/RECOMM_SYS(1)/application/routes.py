@@ -22,6 +22,7 @@ def reviews():
         {'$match': {'Cust_Id':custid} },
         {'$lookup': {'from':'movies', 'localField':'Movie_Id', 'foreignField':'Movie_Id', 'as':'Movie_Info'} },
         {'$unwind': '$Movie_Info'},
+        {'$group': {'_id': '$Movie_Id', 'Rating': {'$first': '$Rating'}, 'Movie_Info': {'$first': '$Movie_Info'}}},
         {'$project': {'Cust_Id':1, 'Rating':1, 'Movie_Id':1, 'Movie_Info.Name':1, 'Movie_Info.Link':1 } },
         {'$sort': { 'Rating':-1, 'Movie_Info.Name':1}}
     ]))
@@ -39,6 +40,7 @@ def recommend():
         {'$match': {'Predicted_Rating': {'$gte':3.0} } },
         {'$lookup': {'from':'movies', 'localField':'Movie_Id', 'foreignField':'Movie_Id', 'as':'Movie_Info'} },
         {'$unwind': '$Movie_Info'},
+        {'$group': {'_id': '$Movie_Id', 'Predicted_Rating': {'$first': '$Predicted_Rating'}, 'Movie_Info': {'$first': '$Movie_Info'}}},
         {'$project': {'Cust_Id':1, 'Predicted_Rating':{'$round': ['$Predicted_Rating',2]}, 'Movie_Id':1, 'Movie_Info.Name':1, 'Movie_Info.Link':1 } },
         {'$sort': { 'Predicted_Rating':-1, 'Movie_Info.Name':1}}
     ]))

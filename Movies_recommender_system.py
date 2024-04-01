@@ -284,4 +284,4 @@ def write_data(coll_name, df_):
 write_data('users', data_cl_df)
 write_data('movies', df_mov_titles2.reset_index())
 write_data('ratings', df_ratings_XS.loc[:, ['Cust_Id', 'Rating', 'Movie_Id']])
-write_data('predictions', preds_df)
+write_data('predictions', preds_df) 
